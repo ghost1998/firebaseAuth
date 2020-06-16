@@ -1,0 +1,21 @@
+# macOS related
+.DS_Store
+
+# IDE/Editor files
+.vscode
+.vs 
+
+# Next js related
+.next 
+out
+
+# node_modules
+node_modules
+
+# yarn related files
+yarn.lock
+
+# npm related files
+package-lock.json
+
+# project
