@@ -68,8 +68,8 @@ const mapDispatchToProps = {
   incrementCounter: incrementCounter
 };
 // export default connect(mapStateToProps, mapDispatchToProps)(withAuth);
-export default connect()(withAuth);
+// export default connect()(withAuth);
 // export default compose(connect(mapStateToProps, mapDispatchToProps))(withAuth);
 
-// export default withAuth;
+export default withAuth;
 

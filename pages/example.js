@@ -31,7 +31,8 @@ class Example extends React.Component {
     return (
     <div>
       <p>
-        This page can be accessed only with authentication.
+        This page issss stçatic because it does not fffetch any data or include the
+        authed user info.......
       </p>
       <Link href={'/'}>
         <a>Home</a>
