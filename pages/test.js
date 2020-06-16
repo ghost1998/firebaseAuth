@@ -30,6 +30,12 @@ class App extends React.Component {
         <button onClick={this.props.incrementCounter}>Increment</button>
         <button onClick={this.props.decrementCounter}>Decrement</button>
         <h1>{this.props.counter}</h1>
+
+        <div>
+          <Link href={"/example"}>
+            <a>Another example page</a>
+          </Link>
+        </div>
         {/* <Button variant="contained">Default</Button> */}
       </div>
     );
@@ -46,3 +52,7 @@ const mapDispatchToProps = {
 };
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default withAuth(App);
+// const tvr = withAuth(App);
+
+
+// export default (App);

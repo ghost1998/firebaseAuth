@@ -9,9 +9,12 @@ import { compose } from "redux";
 import firebase from "firebase/app";
 import "firebase/auth";
 import initFirebase from "./initFirebase";
-import { loginRequest, loginSuccess, loginFailure } from "../../redux/actions/authActions";
+import {
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+} from "../../redux/actions/authActions";
 import { incrementCounter } from "../../redux/actions/counterActions";
-
 
 const withAuth = (Component) => {
   return class extends React.Component {
@@ -21,22 +24,25 @@ const withAuth = (Component) => {
         status: "LOADING",
       };
     }
-      componentDidMount() {
-        //   this.props.loginRequest();
-        //   this.props.incrementCounter();
-        initFirebase();
+    componentDidMount() {
+        this.props.loginRequest();
+      //   this.props.incrementCounter();
+      initFirebase();
 
-        const auth = firebase.auth();
+      const auth = firebase.auth();
 
-        auth.onAuthStateChanged((authUser) => {
-                  console.log("hohohoho");
+      auth.onAuthStateChanged((authUser) => {
+        console.log("hohohoho");
 
         console.log(authUser);
         if (authUser) {
+                  this.props.loginSuccess(authUser.email);
+
           this.setState({
             status: "SIGNED_IN",
           });
         } else {
+          this.props.loginFailure();
           router.push("/");
         }
       });
@@ -51,11 +57,9 @@ const withAuth = (Component) => {
     }
     render() {
       return <React.Fragment>{this.renderContent()}</React.Fragment>;
-    //   return <React.Fragment>{this.renderContent()}</React.Fragment>;
     }
   };
 };
-// export default withAuth;
 
 const mapStateToProps = (state) => ({
   counter: state.counter.value,
@@ -65,11 +69,7 @@ const mapDispatchToProps = {
   loginRequest: loginRequest,
   loginSuccess: loginSuccess,
   loginFailure: loginFailure,
-  incrementCounter: incrementCounter
+  incrementCounter: incrementCounter,
 };
-// export default connect(mapStateToProps, mapDispatchToProps)(withAuth);
-// export default connect()(withAuth);
-// export default compose(connect(mapStateToProps, mapDispatchToProps))(withAuth);
 
-export default withAuth;
-
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuth);

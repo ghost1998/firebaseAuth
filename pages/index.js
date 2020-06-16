@@ -12,7 +12,7 @@ const fetcher = (url, token) =>
   }).then((res) => res.json())
 
 const Index = () => {
-  const { user, logout } = useUser()
+  const { user, logout } = useUser();
   const { data, error } = useSWR(
     user ? ['/api/getFood', user.token] : null,
     fetcher
@@ -38,10 +38,10 @@ const Index = () => {
         <p>You're signed in. Email: {user.email}</p>
         <p
           style={{
-            display: 'inlinelock',
-            color: 'blue',
-            textDecoration: 'underline',
-            cursor: 'pointer',
+            display: "inlinelock",
+            color: "blue",
+            textDecoration: "underline",
+            cursor: "pointer",
           }}
           onClick={() => logout()}
         >
@@ -49,18 +49,22 @@ const Index = () => {
         </p>
       </div>
       <div>
-        <Link href={'/example'}>
+        <Link href={"/example"}>
           <a>Another example page</a>
         </Link>
-      </div>
-
+      </div>{" "}
       <div>
-        <Test/>
+        <Link href={"/test"}>
+          <a>Another test page</a>
+        </Link>
+      </div>
+      <div>
+        <Test />
       </div>
       {error && <div>Failed to fetch food!</div>}
       {data && <div>Your favorite food is {data.food}.</div>}
     </div>
-  )
+  );
 }
 
 export default Index

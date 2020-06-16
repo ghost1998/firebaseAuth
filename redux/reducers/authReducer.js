@@ -3,7 +3,7 @@
 //   INCREMENT_COUNTER,
 // } from "../actions/aut";
 
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions/authActions";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from "../actions/authActions";
 
 // let initialState = {};
 
@@ -23,17 +23,38 @@ const authReducer = (state = initialState, action) => {
         // user: action.creds.email,
       });
     case LOGIN_SUCCESS:
-      console.log(action);
+      console.log(action.payload);
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        // user: action.creds.email,
+        user: action.payload,
       });
     case LOGIN_FAILURE:
       console.log(action);
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,
+        // user: action.creds.email,
+      });
+    case LOGOUT_REQUEST:
+      console.log(action);
+      return Object.assign({}, state, {
+        isFetching: true,
+        // isAuthenticated: false,
+        // user: action.creds.email,
+      });
+    case LOGOUT_SUCCESS:
+      console.log(action.payload);
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: false,
+        user: null,
+      });
+    case LOGOUT_FAILURE:
+      console.log(action);
+      return Object.assign({}, state, {
+        isFetching: false,
+        // isAuthenticated: true,
         // user: action.creds.email,
       });
     default:
